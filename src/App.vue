@@ -1,7 +1,6 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div id="app" style="min-height: 100vh;">
+      <router-view/>
   </div>
 </template>
 
