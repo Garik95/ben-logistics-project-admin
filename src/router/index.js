@@ -16,6 +16,16 @@ export default new Router({
       path: '/page',
       name: 'MainPage',
       component: MainPage
+    },
+    {
+      path: '/token',
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/dashboard',
+      name: 'MainPage',
+      component: MainPage
     }
   ]
 })

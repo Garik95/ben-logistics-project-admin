@@ -17,7 +17,7 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item to="/page">
+        <md-list-item to="/dashboard">
           <md-icon>dashboard</md-icon>
           <span class="md-list-item-text">Dashboard</span>
         </md-list-item>
@@ -37,9 +37,9 @@
           <span class="md-list-item-text">Deposits</span>
         </md-list-item>
 
-        <md-list-item>
-          <md-icon>attach_money</md-icon>
-          <span class="md-list-item-text">Currency</span>
+        <md-list-item to="/token">
+          <md-icon>credit_card</md-icon>
+          <span class="md-list-item-text">Access Tokens</span>
         </md-list-item>
       </md-list>
     </md-drawer>
@@ -65,14 +65,15 @@
       </md-card-area>
     </md-card>
     </md-drawer>
-      <first v-if="page == '/page'"></first>
-      <phone v-if="page == '/phone'"></phone>
-      <password v-if="page == '/password'"></password>
+      <dash v-if="page == '/dashboard'"></dash>
+      <token v-if="page == '/token'"></token>
+      <!-- <password v-if="page == '/password'"></password> -->
   </div>
 </template>
 
 <script>
-// import First from './views/First.vue'
+import Token from './views/Token.vue'
+import Dash from './views/Dashboard.vue'
 // import io from 'socket.io-client'
 // import Phone from './views/Phone.vue'
 // import Password from './views/Password.vue'
@@ -117,7 +118,8 @@ export default {
     }
   },
   components: {
-    // First
+    Token,
+    Dash
     // Phone,
     // Password
   }
