@@ -22,19 +22,29 @@
           <span class="md-list-item-text">Dashboard</span>
         </md-list-item>
 
-        <md-list-item>
-          <md-icon>payment</md-icon>
-          <span class="md-list-item-text">Payments</span>
+        <md-list-item  to="/trucks">
+          <md-icon>drive_eta</md-icon>
+          <span class="md-list-item-text">Trucks</span>
         </md-list-item>
 
-        <md-list-item>
-          <md-icon>history</md-icon>
-          <span class="md-list-item-text">Payments History</span>
+        <md-list-item to="/trailers">
+          <md-icon>local_shipping</md-icon>
+          <span class="md-list-item-text">Trailers</span>
         </md-list-item>
 
-        <md-list-item>
-          <md-icon>money</md-icon>
-          <span class="md-list-item-text">Deposits</span>
+        <md-list-item to="/drivers">
+          <md-icon>people</md-icon>
+          <span class="md-list-item-text">Drivers</span>
+        </md-list-item>
+
+        <md-list-item to="/dispatchers">
+          <md-icon>person</md-icon>
+          <span class="md-list-item-text">Users</span>
+        </md-list-item>
+
+        <md-list-item to="/reserves">
+          <md-icon>rv_hookup</md-icon>
+          <span class="md-list-item-text">Reserves</span>
         </md-list-item>
 
         <md-list-item to="/token">
