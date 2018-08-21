@@ -5,7 +5,7 @@
         <md-card-header>
             <md-card-header-text>
             <div class="md-title">Trucks</div>
-            <div class="md-subhead">{{ counters.truck }}</div>
+            <div class="md-subhead">{{ counters.truck }}({{ counters.newTruck }})</div>
             </md-card-header-text>
 
             <md-card-media>
@@ -23,7 +23,7 @@
         <md-card-header>
             <md-card-header-text>
             <div class="md-title">Trailers</div>
-            <div class="md-subhead">{{ counters.trailer }}</div>
+            <div class="md-subhead">{{ counters.trailer }}({{ counters.newTrailer }})</div>
             </md-card-header-text>
 
             <md-card-media>
@@ -77,7 +77,7 @@
         <md-card-header>
             <md-card-header-text>
             <div class="md-title">Reserves</div>
-            <div class="md-subhead">{{ counters.reserve }}</div>
+            <div class="md-subhead">{{ counters.reserve }}({{ counters.newReserve }})</div>
             </md-card-header-text>
 
             <md-card-media>
@@ -106,7 +106,7 @@ export default {
   }),
   created () {
     axios.post(this.url, {
-      query: `{ vehiclecount{ trailer truck driver user reserve} }`
+      query: `{ vehiclecount{ trailer newTrailer truck newTruck driver user reserve newReserve} }`
     }).then(res => {
       this.counters = res.data.data.vehiclecount
       this.loaded = false

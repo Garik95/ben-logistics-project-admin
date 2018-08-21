@@ -17,7 +17,7 @@
         :md-description="`No trailers found for this '${search}' query. Try a different search term.`">
       </md-table-empty-state>
 
-      <md-table-row slot="md-table-row" slot-scope="{ item }">
+      <md-table-row slot="md-table-row" slot-scope="{ item }" v-bind:style="rowStyle(item.status)">
         <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
         <md-table-cell md-label="name" md-sort-by="name">{{ item.name }}</md-table-cell>
         <md-table-cell md-label="serial" md-sort-by="serial">{{ item.serial }}</md-table-cell>
@@ -30,8 +30,19 @@
         <md-table-cell md-label="status" md-sort-by="status">{{ item.status }}</md-table-cell>
         <md-table-cell md-label="moving" md-sort-by="moving">{{ item.moving }}</md-table-cell>
         <md-table-cell md-label="stopped" md-sort-by="stopped">{{ item.stopped }}</md-table-cell>
+        <md-table-cell md-label="Actions"><md-menu md-size="medium" md-align-trigger>
+            <md-button class="md-icon-button md-raised" md-menu-trigger @click="selectedTrailer = item.id">
+                <md-icon>edit</md-icon>
+            </md-button>
+            <md-menu-content>
+                <md-menu-item @click="statusMenu('Available')">Available</md-menu-item>
+                <md-menu-item @click="statusMenu('Blocked')">Blocked</md-menu-item>
+            </md-menu-content>
+            </md-menu>
+        </md-table-cell>
       </md-table-row>
     </md-table>
+    <md-snackbar :md-active.sync="snackbar">{{ msg }}</md-snackbar>
   </div>
 </template>
 
@@ -54,11 +65,29 @@ export default {
     loaded: true,
     search: null,
     searched: [],
-    trailers: null
+    trailers: null,
+    selectedTrailer: null,
+    snackbar: false,
+    msg: null
   }),
   methods: {
     searchOnTable () {
       this.searched = searchByName(this.trailers, this.search)
+    },
+    rowStyle (st) {
+      if (st === null) return 'background-color:yellow'
+      if (st === 'Blocked') return 'background-color:red'
+    },
+    statusMenu (id) {
+      axios.post(this.url, {
+        query: `mutation{ setTrailerStatus(id:` + this.selectedTrailer + `,status:"` + id + `"){ status } }`
+      }).then(res => {
+        this.msg = 'Status changed'
+        this.snackbar = true
+      })
+      // alert(this.selectedTrailer)
+      // alert(id)
+      this.selectedTrailer = null
     }
   },
   created () {
