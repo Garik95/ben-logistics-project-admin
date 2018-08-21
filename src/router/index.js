@@ -26,6 +26,31 @@ export default new Router({
       path: '/dashboard',
       name: 'MainPage',
       component: MainPage
+    },
+    {
+      path: '/trucks',
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/trailers',
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/drivers',
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/dispatchers',
+      name: 'MainPage',
+      component: MainPage
+    },
+    {
+      path: '/reserves',
+      name: 'MainPage',
+      component: MainPage
     }
   ]
 })

@@ -67,6 +67,11 @@
     </md-drawer>
       <dash v-if="page == '/dashboard'"></dash>
       <token v-if="page == '/token'"></token>
+      <trucks v-if="page == '/trucks'"></trucks>
+      <trailers v-if="page == '/trailers'"></trailers>
+      <drivers v-if="page == '/drivers'"></drivers>
+      <dispatchers v-if="page == '/dispatchers'"></dispatchers>
+      <reserves v-if="page == '/reserves'"></reserves>
       <!-- <password v-if="page == '/password'"></password> -->
   </div>
 </template>
@@ -74,6 +79,12 @@
 <script>
 import Token from './views/Token.vue'
 import Dash from './views/Dashboard.vue'
+import Trucks from './views/Trucks.vue'
+import Trailers from './views/Trailers.vue'
+import Drivers from './views/Drivers.vue'
+import Dispatchers from './views/Dispatchers.vue'
+import Reserves from './views/Reserves.vue'
+
 // import io from 'socket.io-client'
 // import Phone from './views/Phone.vue'
 // import Password from './views/Password.vue'
@@ -86,7 +97,7 @@ export default {
     username: '',
     showNavigation: false,
     showSidepanel: false,
-    page: '/page'
+    page: '/dashboard'
     // socket: io('localhost:8443')
   }),
   beforeCreate: function () {
@@ -119,9 +130,12 @@ export default {
   },
   components: {
     Token,
-    Dash
-    // Phone,
-    // Password
+    Dash,
+    Trucks,
+    Trailers,
+    Drivers,
+    Dispatchers,
+    Reserves
   }
 }
 </script>
