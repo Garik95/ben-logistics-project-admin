@@ -4,7 +4,7 @@
     <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
       <md-table-toolbar>
         <div class="md-toolbar-section-start">
-          <h1 class="md-title">Trucks</h1>
+          <h1 class="md-title">Trucks</h1><md-button @click="reshreshData()"><md-icon>refresh</md-icon></md-button>
         </div>
 
         <md-field md-clearable class="md-toolbar-section-end">
@@ -56,16 +56,24 @@ export default {
   methods: {
     searchOnTable () {
       this.searched = searchByName(this.trucks, this.search)
+    },
+    reshreshData () {
+      this.loaded = true
+      this.trucks = null
+      this.fetchData()
+    },
+    fetchData () {
+      axios.post(this.url, {
+        query: `{trucks{id vin label color make model deviceSerialNumber year isAvailable } }`
+      }).then(res => {
+        this.trucks = res.data.data.trucks
+        this.searched = this.trucks
+        this.loaded = false
+      })
     }
   },
   created () {
-    axios.post(this.url, {
-      query: `{trucks{id vin label color make model deviceSerialNumber year isAvailable } }`
-    }).then(res => {
-      this.trucks = res.data.data.trucks
-      this.searched = this.trucks
-      this.loaded = false
-    })
+    this.fetchData()
   }
 }
 </script>

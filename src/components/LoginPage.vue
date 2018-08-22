@@ -80,7 +80,7 @@ export default {
   },
   beforeCreate: function () {
     if (this.$session.exists()) {
-      this.$router.push('/page')
+      this.$router.push('/dashboard')
     }
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
       this.sending = true
       // Instead of this timeout, here you can call your API
 
-      axios.post(`http://logistics-api.eu-4.evennode.com/graphql`,
+      axios.post(`http://localhost:3000/graphql`,
         {
           query: `{user(login:"` + this.form.firstName + `",password:"` + this.form.password + `"){first_name last_name login post}}`
         }).then(response => {
@@ -113,7 +113,7 @@ export default {
           // Vue.http.headers.common['Authorization'] = 'Bearer ' + response.body.token
           this.userSaved = true
           this.sending = false
-          router.push('/page')
+          router.push('/dashboard')
         } else {
           this.msg = `The user was not found or you're not privileged to use system`
           this.userSaved = true

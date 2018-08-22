@@ -13,11 +13,6 @@ export default new Router({
       component: LoginPage
     },
     {
-      path: '/page',
-      name: 'MainPage',
-      component: MainPage
-    },
-    {
       path: '/token',
       name: 'MainPage',
       component: MainPage

@@ -4,7 +4,7 @@
     <md-table v-model="searched" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
       <md-table-toolbar>
         <div class="md-toolbar-section-start">
-          <h1 class="md-title">Trailers</h1>
+          <md-button @click="reshreshData()"><md-icon>refresh</md-icon></md-button><h1 class="md-title">Trailers</h1>
         </div>
 
         <md-field md-clearable class="md-toolbar-section-end">
@@ -88,16 +88,24 @@ export default {
       // alert(this.selectedTrailer)
       // alert(id)
       this.selectedTrailer = null
+    },
+    reshreshData () {
+      this.loaded = true
+      this.trailers = null
+      this.fetchData()
+    },
+    fetchData () {
+      axios.post(this.url, {
+        query: `{trailers{ address city state name serial id lat lng zip moving movingStartTime stopped stoppedStartTime status } }`
+      }).then(res => {
+        this.trailers = res.data.data.trailers
+        this.searched = this.trailers
+        this.loaded = false
+      })
     }
   },
   created () {
-    axios.post(this.url, {
-      query: `{trailers{ address city state name serial id lat lng zip moving movingStartTime stopped stoppedStartTime status } }`
-    }).then(res => {
-      this.trailers = res.data.data.trailers
-      this.searched = this.trailers
-      this.loaded = false
-    })
+    this.fetchData()
   }
 }
 </script>

@@ -46,7 +46,7 @@
 
             <md-card-media>
               <md-avatar class="md-avatar-icon md-large md-accent">
-                <md-icon>people</md-icon>
+                <md-icon>airline_seat_recline_normal</md-icon>
               </md-avatar>
             </md-card-media>
         </md-card-header>
