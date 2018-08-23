@@ -104,7 +104,7 @@ export default {
     loaded: true,
     counters: null
   }),
-  created () {
+  mounted () {
     axios.post(this.url, {
       query: `{ vehiclecount{ trailer newTrailer truck newTruck driver user reserve newReserve} }`
     }).then(res => {
